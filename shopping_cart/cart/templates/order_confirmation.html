@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #5f6871cb;
+            color: rgb(241, 238, 79);
+            padding: 10px;
+        }
+        h2 {
+             text-align: center;
+             color: green;
+
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #52899a;
+            color: white;
+        }
+
+        h3 {
+            text-align: right;
+            margin: 50px;
+            color: red;
+        }
+        .button-style {
+            margin-left: 20px;
+            display: inline-block;
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 5px; 
+        }
+
+        .button-style:hover {
+            background-color: #0056b3; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Confirmation</h1>
+    <h2>!!! Thanks For Shopping With Us !!! Order Confirmed</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Unit Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>Rs {{ item.product.amount }}</td>
+                <td>Rs {{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h3>Total: Rs {{ total_amount }}</h3>
+    <a href="{% url 'product_list' %}" class="button-style">Continue Shopping</a>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!-- templates/product_list.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://foto.wuestenigel.com/wp-content/uploads/api2/creative-flat-lay-online-shopping-background-on-pastel-color-backdrop.jpeg');
+            background-size: cover;
+            background-repeat: no-repeat; 
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: rgb(204, 178, 146);
+            color: #da5c5c;
+            padding: 10px;
+            margin-top: -5px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #413c3c;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        .button-style {
+            margin-left: 20px;
+            display: inline-block;
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 5px; 
+        }
+
+        .button-style:hover {
+            background-color: #0056b3; 
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Our Products</h1>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.serial_number }}</td>
+                <td>{{ product.name }}</td>
+                <td><a href="{% url 'product_detail' product.serial_number %}">View Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'view_cart' %}" class="button-style">View Cart</a>
+</body>
+</html>

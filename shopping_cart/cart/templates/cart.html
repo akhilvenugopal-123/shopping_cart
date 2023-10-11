@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+
+        input[type="number"] {
+            width: 50px;
+            text-align: center;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        a { 
+            margin-left: 20px;
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .order {
+            position: fixed;
+            right: 20px;
+            top:300px;
+            margin-right: 20px;
+            display: inline-block;
+            padding: 10px 20px; 
+            background-color: red; 
+            color: white; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 5px; 
+        }
+        .button-style {
+            position: fixed;
+            left: 20px;
+            top:500px;
+            margin-right: 20px;
+            display: inline-block;
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 5px; 
+        }
+
+        .button-style:hover {
+            background-color: #0056b3; 
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Your Shopping Cart</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Product</th>
+               
+                <th>Price</th>
+                <th>Subtotal</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in cart_items %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                
+                <td>Rs {{ item.product.amount }}</td>
+                <td>Rs {{ item.subtotal }}</td>
+                <td>
+                    <a href="{% url 'remove_from_cart' item.id %}">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="order" href="{% url 'order_confirmation' %}" >Place Order</a>
+    <a href="{% url 'product_list' %}" class="button-style">Continue Shopping</a>
+</body>
+</html>

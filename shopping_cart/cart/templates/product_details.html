@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ product.name }} Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+        }
+
+        .product-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        p {
+            margin: 10px 0;
+        }
+
+        .add-to-cart-button {
+            text-align: center;
+            margin-top: 20px;
+           
+        }
+        .button-style {
+            margin-left: 20px;
+            display: inline-block;
+            padding: 10px 20px; 
+            background-color: #007BFF; 
+            color: white; 
+            text-decoration: none; 
+            border: none; 
+            border-radius: 5px; 
+        }
+
+        .button-style:hover {
+            background-color: #0056b3; 
+        }
+
+       
+    </style>
+</head>
+<body>
+    <h1>{{ product.name }} Details</h1>
+    <div class="product-details">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <p>Price: Rs {{ product.amount }}</p>
+        <p>Details: {{ product.detail }}</p>
+        <div class="add-to-cart-button">
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" style="background-color:green;color: white;">Add to Cart</button>
+            </form>
+        </div>
+    </div>
+    <a href="{% url 'product_list' %} " class="button-style">Continue Shopping</a>
+</body>
+</html>
